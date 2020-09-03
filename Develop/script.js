@@ -10,60 +10,62 @@ function writePassword() {
 
 }
 
+
+function generatePassword() {
 // Create arrays to be used to construct the password
+  var lowers = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  var uppers = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+  var special = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\"", "]", "^", "_", "`", "{", "|", "}", "~"];
+  var chosen = [];
 
-var lowers = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var uppers = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var special = ["!", "#", "$", "%", "&", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\"", "]", "^", "_", "`", "{", "|", "}", "~"];
-var chosen = [];
+
+// Prompts that come up after you click generate password
 
 
-// Now, all of the possible characters are logged into the console. We have to prompt the user to choose what characters they want.
+  var passwordLength = parseInt(prompt("How many characters do you want in your password? \nPassword cannot be less than 8 characters or more than 128 characters.")); {
+    while (passwordLength < 8 || passwordLength > 128 || typeof (passwordLength) != "number" || passwordLength === NaN || passwordLength === null) {
+      alert("Please choose a number that is more than 8 and less than 128 characters");
+      passwordLength = parseInt(prompt("How many characters do you want in your password? \nPassword cannot be less than 8 characters or more than 128 characters."));
+    }
+  }
 
-var passwordLength = parseInt(prompt("How many characters do you want in your password? \nPassword cannot be less than 8 characters or more than 128 characters."));
+  var selectSpecial = confirm("Click OK to confirm Special Characters.");
 
-// Make the password between 8 and 128 characters
+  var selectLowerCase = confirm("Click OK to confirm Lower Case Characters.");
 
-while (passwordLength < 8 || passwordLength > 128 || typeof (passwordLength) != "number" || passwordLength === NaN || passwordLength === null) {
-  alert("Please choose a number that is more than 8 and less than 128 characters");
-  passwordLength = parseInt(prompt("How many characters do you want in your password? \nPassword cannot be less than 8 characters or more than 128 characters."));
-}
+  var selectUpperCase = confirm("Click OK to confirm Upper Case Characters.");
 
-//Prompt user to choose types of characters
+  var selectNumbers = confirm("Click OK to confirm Numbers.");
+  
+  // Adds user selected data to the empty 'chosen' array
+  if (selectLowerCase) {
+    chosen = chosen.concat(lowers);
+  }
+  if (selectUpperCase) {
+    chosen = chosen.concat(uppers);
+  }
+  if (selectSpecial) {
+    chosen = chosen.concat(special);
+  }
+  if (selectNumbers) {
+    chosen = chosen.concat(numbers);
+  }
 
-var selectSpecial = confirm("Click OK to confirm Special Characters.");
+  // empty string variable for the for loop
+  var pass = "";
 
-var selectLowerCase = confirm("Click OK to confirm Lower Case Characters.");
+  // loop for random characters
+  for (var i = 0; i < passwordLength; i++) {
+    var randomGeneratedPass = chosen[Math.floor(Math.random() * chosen.length)];
 
-var selectUpperCase = confirm("Click OK to confirm Upper Case Characters.");
+    pass += randomGeneratedPass;
 
-var selectNumbers = confirm("Click OK to confirm Numbers.");
+  }
 
-//Possible user choices
-
-if (selectLowerCase) {
-  chosen.concat(lowers);
-} 
-if (selectUpperCase) {
-  chosen.concat(uppers);
-}
-if (selectSpecial) {
-  chosen,concat(special);
-}
-if (selectNumbers) {
-  chosen.concat(numbers);
-}
-for (var i = 0; i = passwordLength.value; i++) {
-  pass += chosen[Math.floor(Math.random() * chosen.length)]; 
-}
-return pass
-
-function generatePassword () {
-  generateBtn
+  return pass
+  
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
