@@ -1,4 +1,8 @@
-Password Generator
+#Password Generator
+
+See the deployed link here: https://rachelkline.github.io/PasswordGenerator/
+
+![alt text](VISUAL.png)
 
 In this homework assignment we were tasked to create an application that generates a random password based on user-selected criteria. We were given a completed HTML and CSS, and were tasked to create a Javascript file to make the program work as expected.
 
